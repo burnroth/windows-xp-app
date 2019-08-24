@@ -1,0 +1,129 @@
+html {
+  overflow: hidden;
+}
+
+body {
+  background-image: url(../../content/assets/xpbg.jpg);
+  background-size: cover;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+img#flag {
+  height: 40px;
+}
+#taskbar {
+  height: 6vh;
+  width: 100vw;
+  background-color: blue;
+  position: fixed;
+  bottom: 0;
+  padding: 0;
+}
+#homebtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: green;
+  width: 200px;
+  margin: 0;
+  height: 6vh;
+}
+#homebtn p {
+  color: white;
+}
+#folder {
+  width: 60px;
+  overflow: visible;
+}
+#folder p {
+  word-break: keep-all;
+  white-space: nowrap;
+}
+#folder img {
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+.window {
+  resize: both;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  background-color: white;
+  overflow: auto;
+}
+
+#windowHeader {
+  height: 40px;
+  background-color: blue;
+}
+
+.cursor-move{
+  cursor: move;
+}
+
+#mydiv {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+}
+
+#mydivheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196f3;
+  color: #fff;
+}
+.fullsize {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  cursor: pointer;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.folder {
+  position: absolute;
+}
+
+
+.fill {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+
+
+.empty {
+  display: inline-block;
+  height: 160px;
+  width: 160px;
+  margin: 10px;
+  border: solid 3px salmon;
+  background: transparent;
+}
+
+.hovered {
+  background: #f4f4f4;
+  border-style: dashed;
+}
+
+.box{
+  background-color:white;
+  width:3vh;
+  height:3vh;
+  border: 1px solid black;
+  padding: 20px 20px 20px 20px;
+  margin: 6px 6px
+}

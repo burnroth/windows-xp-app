@@ -1,71 +1,95 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
-
+import Taskbar from "../components/Taskbar"
+import "./styles.css"
+import Folder from "../components/Folder"
+import upperFirst from "lodash/upperFirst"
+import Window from "../components/Window"
+import { folderNode } from "../components/Folder"
 class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+  constructor(props) {
+    super(props)
 
+    this.state = {
+      MaggansPortfolio: false,
+      MaggansWebbdesign: false,
+      MaggansWebbutveckling: false,
+      
+    }
+
+    this.handleDoubleClick = this.handleDoubleClick.bind(this)
+    this.handleDragOver = this.handleDragOver.bind(this)
+    this.handleDrop = this.handleDrop.bind(this)
+  }
+
+  handleDoubleClick(e) {
+    e.persist()
+    let folderID = e.target.name
+    const componentName = upperFirst(e.target.name)
+    console.log(componentName)
+    this.setState({
+      [componentName]: true,
+    })
+  }
+
+  handleDragOver(e) {
+    e.preventDefault()
+  }
+  handleDrop(e) {
+    e.persist()
+    const placeholder = e.target
+    const payload = e.dataTransfer.getData("node")
+    console.log(payload)
+    console.log(folderNode)
+    placeholder.append(folderNode)
+  }
+
+  render() {
     return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </div>
-          )
-        })}
-      </Layout>
+      <div>
+        <div>
+          <p></p>
+          <Folder folderName="Maggans Portfolio" />
+          <Folder folderName="Maggans Webbdesign" />
+          <Folder folderName="Maggans Webbutveckling" />
+
+          <div>
+            <div
+              onDragOver={this.handleDragOver}
+              onDrop={this.handleDrop}
+              className="empty"
+            ></div>
+
+            <div
+              onDragOver={this.handleDragOver}
+              onDrop={this.handleDrop}
+              className="empty"
+            ></div>
+
+            <div
+              onDragOver={this.handleDragOver}
+              onDrop={this.handleDrop}
+              className="empty"
+            ></div>
+
+            <div
+              onDragOver={this.handleDragOver}
+              onDrop={this.handleDrop}
+              className="empty"
+            ></div>
+
+            <div
+              onDragOver={this.handleDragOver}
+              onDrop={this.handleDrop}
+              className="empty"
+            ></div>
+          </div>
+        </div>
+        {this.state.MaggansPortfolio ? <Window /> : null}
+        <Taskbar />
+      </div>
     )
   }
 }
 
 export default BlogIndex
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
-        }
-      }
-    }
-  }
-`
