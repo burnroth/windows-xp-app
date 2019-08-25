@@ -3,7 +3,7 @@
 # Översätta Window.jsx till React
 
 
-[ ] Hej
+[x] Hej
 # this should be refactored to React code instead (Folder.jsx)
  // Fill listeners
     // fill.addEventListener("dragstart", dragStart)
